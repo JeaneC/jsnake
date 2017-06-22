@@ -1,5 +1,7 @@
 import pygame
 from pygame.sprite import Sprite
+from pygame.sprite import Group
+from turnPoint import TurnPoint
 
 class Snake(Sprite):
     """A class to represent the snake"""
@@ -19,16 +21,20 @@ class Snake(Sprite):
         self.y = float(self.rect.y)
 
         # Testing these variables out
-        self.movePointX = 0
-        self.movePointY = 0
         self.color = self.ai_settings.jred
 
         self.length = self.stats.score
+
+        self.head = False
+        self.end = False
 
         self.moving_right = False
         self.moving_left = False
         self.moving_down = False
         self.moving_up = False
+
+        # Create it's turn points
+        self.turnPoints = Group()
 
     def blitme(self):
         """Draw the snake"""
@@ -47,6 +53,20 @@ class Snake(Sprite):
 
         self.rect.centerx = self.center
         self.rect.y = self.y
+
+    def direction(self):
+        if self.moving_right:
+            print("Right")
+        elif self.moving_left:
+            print("Left")
+        elif self.moving_up:
+            print("Up")
+        elif self.moving_down:
+            print("Down")
+        else:
+            print("Not moving")
+
+
 
     def updateBody(self):
         for x in range(0, self.length + 1):

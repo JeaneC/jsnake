@@ -6,6 +6,7 @@ from snake import Snake
 from snake_food import SnakeFood
 from pygame.sprite import Group
 from scoreboard import Scoreboard
+from turnPoint import TurnPoint
 
 import game_functions as gf
 
@@ -20,30 +21,33 @@ def run_game():
     # Stats
     stats = GameStats(ai_settings)
     sb = Scoreboard(ai_settings, screen, stats)
-    # Prototype Snake
+
+    # Snake head
     snakeHead = Snake(ai_settings, screen, stats)
+    snakeHead.head = True
 
     # Group of the snake parts
-    snake = Group()
-    snake.add(snakeHead) # Add the head as the first element
+    snakes = Group()
+    snakes.add(snakeHead) # Add the head as the first element
+    snakeBody = [snakeHead] # Create a list of the snake parts
 
-    # Create a list of the snake parts
-    snakeBody = [snakeHead]
+    # Create a group of turn points
+    turnPoints = Group()
 
     # Make a group of snake food
     food = Group()
-    snake_food = SnakeFood(ai_settings, screen, stats, snake)
-    food.add(snake_food)
 
     while True:
-        gf.check_events(snake, snakeHead)
+        gf.check_events(ai_settings, screen, snakes, snakeHead, turnPoints)
+
         if stats.game_active:
-            snake.update()
-            gf.check_snakeHead_food_collisons(ai_settings, stats, sb,
-                                              screen, snakeHead, snake, snakeBody,
+            snakes.update()
+            gf.check_snakeHead_food_collisions(ai_settings, stats, sb,
+                                              screen, snakeHead, snakes, snakeBody,
                                               food)
-            gf.spawn_food(ai_settings, screen, stats,  snake, food)
-        gf.update_screen(ai_settings, screen, sb, snake, food)
+            gf.spawn_food(ai_settings, screen, stats,  snakes, food)
+            gf.update_snake(ai_settings, stats, screen, snakes, food)
+        gf.update_screen(ai_settings, screen, sb, snakes, food)
 
 
 

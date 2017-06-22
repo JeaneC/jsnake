@@ -16,4 +16,3 @@ testGroup.add(bodyOne)
 testGroup.add(bodyTwo)
 
 print(testGroup.sprites())
-print(testGroup,sprites[1])

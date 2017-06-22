@@ -18,4 +18,12 @@ Update V 0.30
 
 Update V 0.40
 - Uh... The program kinda got worse...
-- Not sure how to make the python bigger
+- Not sure how to make the snake bigger
+
+Update V 0.5
+- I found out the mistake!
+- Python, unlike the other languages, references objects
+- So when I created a new object, I wanted it to have very similar stats to an older one
+- So I set it equal to each other, and then I tried to modify the older stats, but
+- That really just backfired, since that made Object A become Object B
+- The program is starting to come together
