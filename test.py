@@ -1,12 +1,19 @@
-import random
-from settings import Settings
+from testObject import testObject
+from snake import Snake
+from pygame.sprite import Group
 
-settings = Settings()
 
-for x in range(10):
-    x_value = random.randint(0,settings.screen_width)
-    y_value = random.randint(0,settings.screen_height)
-    print(str(x_value) + "," + str(y_value))
 
-for x in range(10):
-    print(random.randint(0,10)) # This prints all the numbers from 0 to 10
+# Prototype Snake
+snakeHead = testObject()
+bodyOne = testObject()
+bodyTwo = testObject()
+
+# Group of the snake parts
+testGroup = Group()
+testGroup.add(snakeHead)  # Add the head as the first element
+testGroup.add(bodyOne)
+testGroup.add(bodyTwo)
+
+print(testGroup.sprites())
+print(testGroup,sprites[1])

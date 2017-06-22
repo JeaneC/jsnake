@@ -5,12 +5,13 @@ from pygame.sprite import Sprite
 class SnakeFood(Sprite):
     """To create a snake food block particle in the game"""
 
-    def __init__(self, ai_settings,screen, snake):
+    def __init__(self, ai_settings, screen, stats, snake):
         """Initialize snake food stuff"""
         super(SnakeFood, self).__init__()
         self.ai_settings = ai_settings
         self.screen = screen
         self.screen_rect = screen.get_rect()  # Screen's rectangle
+        self.stats = stats
 
         # This will be problematic later in the rare scenario the food
         # Spawns in the snake's mouth

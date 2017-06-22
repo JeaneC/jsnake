@@ -15,3 +15,7 @@ Update V 0.30
 - The game is more defined now
 - Food does randomly spawn everywhere
 - The snake's body has yet to be fixed yet though, and for now only stays as 1 block
+
+Update V 0.40
+- Uh... The program kinda got worse...
+- Not sure how to make the python bigger

@@ -4,17 +4,26 @@ from pygame.sprite import Sprite
 class Snake(Sprite):
     """A class to represent the snake"""
 
-    def __init__(self, ai_settings, screen):
+    def __init__(self, ai_settings, screen, stats):
         """Initialize thhe snake."""
         super(Snake, self).__init__()
         self.screen = screen
         self.screen_rect = screen.get_rect() # Screen's rectangle
         self.ai_settings = ai_settings
+        self.stats = stats
+
         self.rect = pygame.Rect(self.ai_settings.screen_width/2,
                                 self.ai_settings.screen_height/2,
                                 ai_settings.snake_width, ai_settings.snake_height)
         self.center = float(self.rect.centerx)
         self.y = float(self.rect.y)
+
+        # Testing these variables out
+        self.movePointX = 0
+        self.movePointY = 0
+        self.color = self.ai_settings.jred
+
+        self.length = self.stats.score
 
         self.moving_right = False
         self.moving_left = False
@@ -23,7 +32,7 @@ class Snake(Sprite):
 
     def blitme(self):
         """Draw the snake"""
-        self.screen.fill(self.ai_settings.jred, self.rect)
+        self.screen.fill(self.color, self.rect)
 
     def update(self):
         """Update snake's position"""
@@ -39,10 +48,7 @@ class Snake(Sprite):
         self.rect.centerx = self.center
         self.rect.y = self.y
 
-class SnakeHead(Snake):
-    """Only the head of the snake"""
-
-    def __init__(self, ai_settings, screen):
-        """Initialize the snake head"""
-        super().__init__(ai_settings, screen)
+    def updateBody(self):
+        for x in range(0, self.length + 1):
+            print(5)
 
