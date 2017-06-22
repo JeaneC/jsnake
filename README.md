@@ -32,3 +32,6 @@ Update V 0.5
 Update V 1.0
 - Game works as intended for the most part
 - Future updates will fix bugs and the interface
+
+Update V 1.0.1
+- Nothing important, just comment tweaking

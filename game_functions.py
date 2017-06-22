@@ -72,7 +72,6 @@ def check_keydown_events(ai_settings, screen, event, stats, snakes, snakeHead):
             sys.exit()
 
 def establish_movePoint(ai_settings, screen, snakeHead, snakes, direction):
-    # print("Happened")
     movePointX = snakeHead.center
     movePointY = snakeHead.y
 
@@ -126,7 +125,6 @@ def enlarge_snake(ai_settings, screen, stats, snakes, snakeList, snakeColor):
     snake_body.add(snakes)
     # snakes.add(snake_body) # This doesn't seem to be working
     snakeList.append(snake_body) ## This is working
-    print(snakes.sprites())
     snakes.update()
 
 def spawn_food(ai_settings, screen, stats, snake, food):
@@ -192,7 +190,6 @@ def check_snake_collisions(stats, snakeHead, snakes):
             snakeBody.remove(snake)
 
     if pygame.sprite.spritecollideany(snakeHead, snakeBody):
-        print("Happened")
         stats.game_active = False
         pygame.mouse.set_visible(True)
 
@@ -224,7 +221,7 @@ def update_screen(ai_settings, screen, sb, snake, food, snakeHead):
     # Make the most recently drawn screen visible
     pygame.display.flip() # Really need this for the screen to update
 
-    # check_snakeHead_food_collisions
+
 
 def check_high_score(stats, sb):
     """Check high score"""
