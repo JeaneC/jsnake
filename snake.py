@@ -16,7 +16,6 @@ class Snake(Sprite):
         self.center = float(self.rect.centerx)
         self.y = float(self.rect.y)
 
-
         self.moving_right = False
         self.moving_left = False
         self.moving_down = False
@@ -39,3 +38,11 @@ class Snake(Sprite):
 
         self.rect.centerx = self.center
         self.rect.y = self.y
+
+class SnakeHead(Snake):
+    """Only the head of the snake"""
+
+    def __init__(self, ai_settings, screen):
+        """Initialize the snake head"""
+        super().__init__(ai_settings, screen)
+

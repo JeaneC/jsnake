@@ -1,7 +1,7 @@
 class Settings():
     """A class to store all settings for JSnake"""
 
-    # Colors
+    # Colors - This game will utilize 9 colors
     black = (0, 0, 0)
     jred = (204, 0, 0)
     jorange = (204, 102, 0)
@@ -22,7 +22,11 @@ class Settings():
         # Snake settings
         self.snake_width = 20
         self.snake_height = 20
-        self.snake_speed_factor = 2
+        self.snake_speed_factor = 1
+
+        # Snake Food settings
+        self.snake_food_width = 15
+        self.snake_food_height = 15
 
 
 
