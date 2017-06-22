@@ -31,15 +31,14 @@ def run_game():
     snakes.add(snakeHead) # Add the head as the first element
     snakeBody = [snakeHead] # Create a list of the snake parts
 
-    # Create a group of turn points
-    turnPoints = Group()
-
     # Make a group of snake food
     food = Group()
 
-    while True:
-        gf.check_events(ai_settings, screen, snakes, snakeHead, turnPoints)
+    # Make mouse invisible
+    pygame.mouse.set_visible(False)
 
+    while True:
+        gf.check_events(ai_settings, screen, stats, snakes, snakeHead)
         if stats.game_active:
             snakes.update()
             gf.check_snakeHead_food_collisions(ai_settings, stats, sb,
@@ -47,7 +46,10 @@ def run_game():
                                               food)
             gf.spawn_food(ai_settings, screen, stats,  snakes, food)
             gf.update_snake(ai_settings, stats, screen, snakes, food)
-        gf.update_screen(ai_settings, screen, sb, snakes, food)
+            gf.check_snake_bottom(screen, stats, snakeHead)
+            gf.check_snake_collisions(stats, snakeHead, snakes)
+        gf.update_screen(ai_settings, screen, sb, snakes, food, snakeHead)
+
 
 
 

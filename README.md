@@ -1,6 +1,7 @@
 This game is my first solo-project in python.
 
 This program uses Pygame to re-create the classic snake game.
+https://www.pygame.org/news
 
 V 0.05 - Program hardly created. Just created a bunch of basic files ( a lot are blank)
 - settings.py created
@@ -27,3 +28,7 @@ Update V 0.5
 - So I set it equal to each other, and then I tried to modify the older stats, but
 - That really just backfired, since that made Object A become Object B
 - The program is starting to come together
+
+Update V 1.0
+- Game works as intended for the most part
+- Future updates will fix bugs and the interface

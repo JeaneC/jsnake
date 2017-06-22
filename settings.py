@@ -22,7 +22,7 @@ class Settings():
         # Snake settings
         self.snake_width = 20
         self.snake_height = 20
-        self.snake_speed_factor = .5
+        self.snake_speed_factor = 1
 
         # Snake Food settings
         self.snake_food_width = 15

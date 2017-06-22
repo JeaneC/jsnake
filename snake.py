@@ -26,6 +26,8 @@ class Snake(Sprite):
         self.length = self.stats.score
 
         self.head = False
+        self.head2 = False
+        self.lock = False
         self.end = False
 
         self.moving_right = False
@@ -40,19 +42,38 @@ class Snake(Sprite):
         """Draw the snake"""
         self.screen.fill(self.color, self.rect)
 
+    def stop(self):
+        self.moving_right = self.moving_left = self.moving_down = self.moving_up = False
+
     def update(self):
         """Update snake's position"""
-        if self.moving_right and self.rect.right < self.screen_rect.right:
-            self.center += self.ai_settings.snake_speed_factor
-        elif self.moving_left and self.rect.left > 0:
-            self.center -= self.ai_settings.snake_speed_factor
-        elif self.moving_up and self.rect.y > 0:
-            self.y -= self.ai_settings.snake_speed_factor
-        elif self.moving_down and self.rect.y < self.screen_rect.bottom:
-            self.y += self.ai_settings.snake_speed_factor
 
-        self.rect.centerx = self.center
-        self.rect.y = self.y
+        if self.head:
+            if self.moving_right and self.rect.right < self.screen_rect.right:
+                self.center += self.ai_settings.snake_speed_factor
+            elif self.moving_left and self.rect.left > 0:
+                self.center -= self.ai_settings.snake_speed_factor
+            elif self.moving_up and self.rect.y > 0:
+                self.y -= self.ai_settings.snake_speed_factor
+            elif self.moving_down and self.rect.y < self. ai_settings.screen_height - 20:
+                self.y += self.ai_settings.snake_speed_factor
+
+            self.rect.centerx = self.center
+            self.rect.y = self.y
+
+        elif not self.head:
+            if self.moving_right:
+                self.center += self.ai_settings.snake_speed_factor
+            elif self.moving_left:
+                self.center -= self.ai_settings.snake_speed_factor
+            elif self.moving_up:
+                self.y -= self.ai_settings.snake_speed_factor
+            elif self.moving_down:
+                self.y += self.ai_settings.snake_speed_factor
+
+            self.rect.centerx = self.center
+            self.rect.y = self.y
+
 
     def direction(self):
         if self.moving_right:

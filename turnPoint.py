@@ -11,7 +11,7 @@ class TurnPoint(Sprite):
 
         self.screen = screen
         self.ai_settings = ai_settings
-        self.rect = pygame.Rect(movePointX,movePointY, 1, 1)
+        self.rect = pygame.Rect(movePointX, movePointY, 1, 1)
         self.right = self.left = self.up = self.down = False
 
         if(direction == 1):
@@ -19,7 +19,7 @@ class TurnPoint(Sprite):
         elif(direction == 2):
             self.left = True
         elif(direction == 3):
-            self.down == True
+            self.down = True
         elif(direction == 4 ):
             self.up = True
 
