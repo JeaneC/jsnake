@@ -4,6 +4,7 @@ import sys
 from snake_food import SnakeFood
 from turnPoint import TurnPoint
 from snake import Snake
+from pygame.sprite import Group
 
 def check_events(ai_settings, screen, stats, snakes, snakeHead):
     """Respond to keypresses and mouse events"""
@@ -83,6 +84,7 @@ def establish_movePoint(ai_settings, screen, snakeHead, snakes, direction):
 
 
 
+
 def enlarge_snake(ai_settings, screen, stats, snakes, snakeList, food, snakeColor):
 
     snake_body = Snake(ai_settings, screen, stats)
@@ -117,7 +119,7 @@ def enlarge_snake(ai_settings, screen, stats, snakes, snakeList, food, snakeColo
         if snakeList[-1].head:
             snake_body.center -= 15
 
-    if(stats.score > 0 and stats.score < 3):
+    if(stats.score < 3):
         snake_body.head2 = True
 
     # Add to the group
@@ -125,6 +127,7 @@ def enlarge_snake(ai_settings, screen, stats, snakes, snakeList, food, snakeColo
     # snakes.add(snake_body) # This doesn't seem to be working
     snakeList.append(snake_body) ## This is working
     snakes.update()
+
     # update_snake(ai_settings, stats, screen, snakes, food)
 
 def spawn_food(ai_settings, screen, stats, snake, food):
@@ -135,9 +138,8 @@ def spawn_food(ai_settings, screen, stats, snake, food):
 
 def check_turning_point(ai_settings, screen, snake, food):
     if not snake.head:
-        if pygame.sprite.spritecollideany(snake, snake.turnPoints):
-            turnPoint = pygame.sprite.spritecollideany(snake, snake.turnPoints)
-            if(snake.center == turnPoint.rect.x and snake.y == turnPoint.rect.y):
+        for turnPoint in snake.turnPoints:
+            if (snake.center == turnPoint.rect.x and snake.y == turnPoint.rect.y):
                 snake.stop()
                 snake.center = turnPoint.center
                 snake.y = turnPoint.y
@@ -146,8 +148,9 @@ def check_turning_point(ai_settings, screen, snake, food):
                 snake.moving_right = turnPoint.right
                 snake.moving_up = turnPoint.up
                 snake.moving_down = turnPoint.down
-
                 turnPoint.remove(snake.turnPoints)
+
+
 
 def check_snake_bottom(screen, stats, snakeHead):
     """Check to see if the snake is at the bottom"""
@@ -167,6 +170,7 @@ def update_snake(ai_settings, stats, screen, snakes, food):
     for snake in snakes:
         check_turning_point(ai_settings, screen, snake, food)
 
+
 def check_snakeHead_food_collisions(ai_settings, stats, sb, screen,
                                    snakeHead, snakes, snakeBody, food):
     """Check to see if the head of the snake bumpeed into food"""
@@ -174,6 +178,7 @@ def check_snakeHead_food_collisions(ai_settings, stats, sb, screen,
     if pygame.sprite.spritecollideany(snakeHead, food):
 
         foodPart = pygame.sprite.spritecollideany(snakeHead, food)
+
         # Remermber food part is a food, we have to convert it to a snake part
         foodPart.remove(food)
         color = foodPart.color
@@ -189,10 +194,11 @@ def check_snake_collisions(stats, snakeHead, snakes):
     snakeBody = snakes.copy()
 
     for snake in snakes:
-        if snake.head or snake.head2:
+        if snake.head or snake.head2: # The second part of this doesn't work yet
             snakeBody.remove(snake)
 
     if pygame.sprite.spritecollideany(snakeHead, snakeBody):
+
         stats.game_active = False
         pygame.mouse.set_visible(True)
 

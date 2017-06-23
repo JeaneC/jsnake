@@ -7,6 +7,7 @@ from snake import Snake
 from pygame.sprite import Group
 from scoreboard import Scoreboard
 
+from snake_food import SnakeFood
 
 
 def run_game():

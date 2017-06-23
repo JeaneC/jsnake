@@ -50,3 +50,7 @@ Update V 1.1
 - I can't find the root cause of the problem, but I could probably create a re-alignment method that would
 - fix it to the user's eyes
 - Oh and I included a video!
+
+Update v 1.2
+- I changed the method behind check_turning_point
+- But that didn't fix the block randomy detaching from the snake =P
