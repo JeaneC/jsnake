@@ -15,8 +15,8 @@ class SnakeFood(Sprite):
 
         # This will be problematic later in the rare scenario the food
         # Spawns in the snake's mouth
-        self.x_value = random.randint(0, ai_settings.screen_width)
-        self.y_value = random.randint(0, ai_settings.screen_height)
+        self.x_value = random.randint(0, ai_settings.screen_width - 20)
+        self.y_value = random.randint(0, ai_settings.screen_height - 20)
 
         self.rect = pygame.Rect(self.x_value, self.y_value,
                                 ai_settings.snake_food_width,

@@ -1,14 +1,13 @@
 import pygame
+import game_functions as gf
 
 from settings import Settings
 from game_stats import GameStats
 from snake import Snake
-from snake_food import SnakeFood
 from pygame.sprite import Group
 from scoreboard import Scoreboard
-from turnPoint import TurnPoint
 
-import game_functions as gf
+
 
 def run_game():
 
@@ -18,7 +17,7 @@ def run_game():
     screen = pygame.display.set_mode((ai_settings.screen_width, ai_settings.screen_height))
     pygame.display.set_caption("JSnake")
 
-    # Stats
+    # Statsx
     stats = GameStats(ai_settings)
     sb = Scoreboard(ai_settings, screen, stats)
 
@@ -45,9 +44,9 @@ def run_game():
                                               screen, snakeHead, snakes, snakeBody,
                                               food)
             gf.spawn_food(ai_settings, screen, stats,  snakes, food)
-            gf.update_snake(ai_settings, stats, screen, snakes, food)
             gf.check_snake_bottom(screen, stats, snakeHead)
             gf.check_snake_collisions(stats, snakeHead, snakes)
+            gf.update_snake(ai_settings, stats, screen, snakes, food)
         gf.update_screen(ai_settings, screen, sb, snakes, food, snakeHead)
 
 

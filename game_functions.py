@@ -1,7 +1,6 @@
 import pygame
 import sys
 
-from pygame.sprite import Group
 from snake_food import SnakeFood
 from turnPoint import TurnPoint
 from snake import Snake
@@ -84,7 +83,7 @@ def establish_movePoint(ai_settings, screen, snakeHead, snakes, direction):
 
 
 
-def enlarge_snake(ai_settings, screen, stats, snakes, snakeList, snakeColor):
+def enlarge_snake(ai_settings, screen, stats, snakes, snakeList, food, snakeColor):
 
     snake_body = Snake(ai_settings, screen, stats)
 
@@ -126,6 +125,7 @@ def enlarge_snake(ai_settings, screen, stats, snakes, snakeList, snakeColor):
     # snakes.add(snake_body) # This doesn't seem to be working
     snakeList.append(snake_body) ## This is working
     snakes.update()
+    # update_snake(ai_settings, stats, screen, snakes, food)
 
 def spawn_food(ai_settings, screen, stats, snake, food):
 
@@ -139,6 +139,9 @@ def check_turning_point(ai_settings, screen, snake, food):
             turnPoint = pygame.sprite.spritecollideany(snake, snake.turnPoints)
             if(snake.center == turnPoint.rect.x and snake.y == turnPoint.rect.y):
                 snake.stop()
+                snake.center = turnPoint.center
+                snake.y = turnPoint.y
+
                 snake.moving_left = turnPoint.left
                 snake.moving_right = turnPoint.right
                 snake.moving_up = turnPoint.up
@@ -175,7 +178,7 @@ def check_snakeHead_food_collisions(ai_settings, stats, sb, screen,
         foodPart.remove(food)
         color = foodPart.color
 
-        enlarge_snake(ai_settings, screen, stats, snakes, snakeBody, color)
+        enlarge_snake(ai_settings, screen, stats, snakes, snakeBody, food, color)
 
         stats.score += 1
         sb.prep_score()

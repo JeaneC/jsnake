@@ -13,6 +13,8 @@ class TurnPoint(Sprite):
         self.ai_settings = ai_settings
         self.rect = pygame.Rect(movePointX, movePointY, 1, 1)
         self.right = self.left = self.up = self.down = False
+        self.center = movePointX
+        self.y = movePointY
 
         if(direction == 1):
             self.right = True
@@ -25,4 +27,4 @@ class TurnPoint(Sprite):
 
     def blitme(self):
         """Draw the turn point"""
-        self.screen.fill(self.ai_settings.jcyan, self.rect)
+        self.screen.fill(self.ai_settings.black, self.rect) #Change this to a color to see turn points

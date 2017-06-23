@@ -35,3 +35,18 @@ Update V 1.0
 
 Update V 1.0.1
 - Nothing important, just comment tweaking
+
+Update v 1.0.5
+- A few test runs, some notable bugs
+- Bug 1, when it eats something, a random snake block, departs from the group
+- Bug 2, even though I put safetey measures to preven this, the snake can collide
+- With the piece next to it, and cause you to lose the game
+- Bug 1 is probably because the turning point is so small it can be missed
+
+Update V 1.1
+- I think the bug is coming straight from my turnPoint class
+- A possible fix to this is to create a larger turnPoint collision radius
+- I put a fix that didn't fix anything =P
+- I can't find the root cause of the problem, but I could probably create a re-alignment method that would
+- fix it to the user's eyes
+- Oh and I included a video!
